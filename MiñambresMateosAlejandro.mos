@@ -1,0 +1,78 @@
+model ModelName
+uses "mmxprs";
+
+declarations
+	xjv : mpvar
+	xjm : mpvar
+	xjb : mpvar
+	xjc : mpvar
+	xsv : mpvar
+	xsm : mpvar
+	xsb : mpvar
+	xsc : mpvar
+	xav : mpvar
+	xam : mpvar
+	xab : mpvar
+	xac : mpvar
+	Z : linctr
+end-declarations
+
+Z:= 30*xjv+20*xjm+70*xjb+60*xjc+
+	70*xsv+50*xsm+20*xsb+30*xsc+
+	20*xav+50*xam+40*xab+50*xac
+
+r1:= xjv+xjm+xjb+xjc<=5000
+r2:= xsv+xsm+xsb+xsc<=6000
+r3:= xav+xam+xab+xac<=2500
+
+r4:= xjv+xsv+xav>=6000
+r5:= xjm+xsm+xam>=4000
+r6:= xjb+xsb+xab>=2000
+r7:= xjc+xsc+xac>=1500
+
+r8:= 0.75*(xjm+xjb+xjc+xjv)<= xjv
+
+writeln("Modelo explicito inicial. Solucion optima:")
+minimize(Z)
+writeln("Valor objetivo: Coste = ",Z.sol)
+writeln("")
+	
+writeln("Valor de xjv = ",xjv.sol)
+writeln("Valor de xjm = ",xjm.sol)
+writeln("Valor de xjb = ",xjb.sol)
+writeln("Valor de xjc = ",xjc.sol)
+writeln("Valor de xsv = ",xsv.sol)
+writeln("Valor de xsm = ",xsm.sol)
+writeln("Valor de xsb = ",xsb.sol)
+writeln("Valor de xsc = ",xsc.sol)
+writeln("Valor de xav = ",xav.sol)
+writeln("Valor de xam = ",xam.sol)
+writeln("Valor de xab = ",xab.sol)
+writeln("Valor de xac = ",xac.sol)
+writeln("")
+
+writeln("Valor de holgura r1 = ",r1.slack)
+writeln("Valor de holgura r2 = ",r2.slack)
+writeln("Valor de holgura r3 = ",r3.slack)
+writeln("Valor de holgura r4 = ",r4.slack)
+writeln("Valor de holgura r5 = ",r5.slack)
+writeln("Valor de holgura r6 = ",r6.slack)
+writeln("Valor de holgura r7 = ",r7.slack)
+writeln("Valor de holgura r8 = ",r8.slack)
+writeln("")
+
+writeln("Coste reducido de xjv = ",xjv.rcost)
+writeln("Coste reducido de xjm = ",xjm.rcost)
+writeln("Coste reducido de xjb = ",xjb.rcost)
+writeln("Coste reducido de xjc = ",xjc.rcost)
+writeln("Coste reducido de xsv = ",xsv.rcost)
+writeln("Coste reducido de xsm = ",xsm.rcost)
+writeln("Coste reducido de xsb = ",xsb.rcost)
+writeln("Coste reducido de xsc = ",xsc.rcost)
+writeln("Coste reducido de xav = ",xav.rcost)
+writeln("Coste reducido de xam = ",xam.rcost)
+writeln("Coste reducido de xab = ",xab.rcost)
+writeln("Coste reducido de xac = ",xac.rcost)
+
+
+end-model
